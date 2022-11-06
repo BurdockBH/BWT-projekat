@@ -18,6 +18,16 @@ class Prisustvo {
           "Parametar sedmica mora imati vrijednost koja je manja od trenutne sedmice!",
       };
 
+    for (let x of listaPrisustva) {
+      if (
+        Object.keys(x).length != 4 ||
+        Object.getOwnPropertyNames(x)[0] != "prSedmica" ||
+        Object.getOwnPropertyNames(x)[1] != "prisutan" ||
+        Object.getOwnPropertyNames(x)[2] != "odsutan" ||
+        Object.getOwnPropertyNames(x)[3] != "nijeUneseno"
+      )
+        return { greska: "Parametar listaPrisustva nema ispravne properties!" };
+    }
     const unikatni = [];
     const unazad = listaPrisustva.slice(0);
     unazad.reverse();
@@ -76,6 +86,10 @@ class Prisustvo {
     for (let x of novaLista) {
       ukupno_prisutan += x.prisutan;
       ukupno_odsutan += x.odsutan;
+      if (x.odsutan + x.prisutan + x.nijeUneseno > 8)
+        return {
+          greska: "Parametar listaPrisustva nema ispravnu zbirnu vrijednost!",
+        };
       if (x.nijeUneseno != 0) this.finalnoStanje = false;
     }
     this.prisustvo = ukupno_prisutan / (ukupno_prisutan + ukupno_odsutan);
