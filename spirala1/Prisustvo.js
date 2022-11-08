@@ -24,7 +24,11 @@ class Prisustvo {
         Object.getOwnPropertyNames(x)[0] != "prSedmica" ||
         Object.getOwnPropertyNames(x)[1] != "prisutan" ||
         Object.getOwnPropertyNames(x)[2] != "odsutan" ||
-        Object.getOwnPropertyNames(x)[3] != "nijeUneseno"
+        Object.getOwnPropertyNames(x)[3] != "nijeUneseno" ||
+        !Number.isInteger(x.prSedmica) ||
+        !Number.isInteger(x.prisutan) ||
+        !Number.isInteger(x.odsutan) ||
+        !Number.isInteger(x.nijeUneseno)
       )
         return { greska: "Parametar listaPrisustva nema ispravne properties!" };
     }

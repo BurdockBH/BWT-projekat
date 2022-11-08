@@ -43,6 +43,45 @@ describe("Prisustvo", function () {
       );
     });
 
+    it('treba vratiti {greska: "Parametar listaPrisustva nema ispravne properties!"} jer postoji visak parametar', function () {
+      assert.equal(
+        pr.izracunajPrisustvo(2, [
+          {
+            prSedmica: 2,
+            prisutan: 2,
+            odsutan: 2,
+            nijeUneseno: 0,
+            viskaParametar: 5,
+          },
+          { prSedmica: 1, prisutan: 2, odsutan: 2, nijeUneseno: 1 },
+          { prSedmica: 1, prisutan: -1, odsutan: -1, nijeUneseno: 1 },
+        ]).greska,
+        "Parametar listaPrisustva nema ispravne properties!"
+      );
+    });
+
+    it('treba vratiti {greska: "Parametar listaPrisustva nema ispravne properties!"} jer je unesen parametar prSedmica kao string', function () {
+      assert.equal(
+        pr.izracunajPrisustvo(2, [
+          { prSedmica: "string", prisutan: 2, odsutan: 2, nijeUneseno: 0 },
+          { prSedmica: 1, prisutan: 2, odsutan: 2, nijeUneseno: 1 },
+          { prSedmica: 1, prisutan: 1, odsutan: 6, nijeUneseno: 1 },
+        ]).greska,
+        "Parametar listaPrisustva nema ispravne properties!"
+      );
+    });
+
+    it('treba vratiti {greska: "Parametar listaPrisustva nema ispravne properties!"} jer je unesen tip double prisutan, za prSedmica 1', function () {
+      assert.equal(
+        pr.izracunajPrisustvo(2, [
+          { prSedmica: 2, prisutan: 2, odsutan: 2, nijeUneseno: 0 },
+          { prSedmica: 1, prisutan: 2.5, odsutan: 2, nijeUneseno: 1 },
+          { prSedmica: 1, prisutan: 1, odsutan: 6, nijeUneseno: 1 },
+        ]).greska,
+        "Parametar listaPrisustva nema ispravne properties!"
+      );
+    });
+
     it('treba vratiti {greska: "Parametar listaPrisustva nema ispravnu zbirnu vrijednost!"} jer zbir prisutan, odsutan i nijeUneseno prvog objekta je veci od 8', function () {
       assert.equal(
         pr.izracunajPrisustvo(2, [
