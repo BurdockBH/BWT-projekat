@@ -35,6 +35,8 @@ const server = http
       req.on("data", function (data) {
         body = JSON.parse(data);
         fs.readFile("studenti.csv", "utf8", (err, text) => {
+          if (err) throw err;
+
           let studenti = text.split("\n");
           if (text.length == 0) {
             //Ako je datoteka prazna, appendaj bez \n
@@ -76,6 +78,8 @@ const server = http
         body = JSON.parse(data);
         fs.readFile("predmeti.csv", "utf8", (err, text) => {
           //Ako je kod dobar, provjeravaj dalje
+          if (err) throw err;
+
           if (p.provjeriKodPredmeta(body.kod)) {
             let predmeti = text.split("\n");
             if (text.length == 0) {
@@ -133,6 +137,8 @@ const server = http
 
         //Citanje iz predmeti.csv (ugnijezdeni fs.readFile-ovi)
         fs.readFile("predmeti.csv", "utf8", (err, text2) => {
+          if (err) throw err;
+
           let predmeti = text2.split("\n");
           let flag = false;
           for (let predmet of predmeti) {
@@ -151,6 +157,8 @@ const server = http
             return;
           }
           fs.readFile("studenti.csv", "utf8", (err, text3) => {
+            if (err) throw err;
+
             let studenti = text3.split("\n");
             let flag = false;
             for (let student of studenti) {
@@ -168,6 +176,8 @@ const server = http
               return;
             }
             fs.readFile("prisustva.csv", "utf8", (err, text1) => {
+              if (err) throw err;
+
               if (text1.length == 0) {
                 let novoPrisustvo = `tipcasa:${body.tipCasa},redniBrojCasa:${body.redniBrojCasa},sedmica:${body.sedmica},kodPredmeta:${body.kodPredmeta},indexStudenta:${body.indexStudenta},statusPrisustva:${body.statusPrisustva}`;
                 fs.appendFile("prisustva.csv", novoPrisustvo, function (err) {
@@ -243,6 +253,7 @@ const server = http
         parametri[2].slice(parametri[2].indexOf("=") + 1);
 
       fs.readFile("prisustva.csv", "utf8", (err, text) => {
+        if (err) throw err;
         let objekatPrisustva = {};
         let prisustva = text.split("\n");
         let flag = false;
