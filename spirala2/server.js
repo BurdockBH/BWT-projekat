@@ -4,6 +4,7 @@ const url = require("url");
 const Predmet = require("./scripts/Predmet");
 const Prisustvo = require("./scripts/Prisustvo");
 
+//Funckije za dodavanje podataka u .csv
 function DodajStudenta(data) {
   let noviStudent = `\nindex:${data.index},ime:${data.ime},prezime:${data.prezime}`;
   fs.appendFile("studenti.csv", noviStudent, function (err) {
@@ -25,8 +26,10 @@ function DodajPrisustvo(data) {
   });
 }
 
-http
+//Kreiranje servera
+const server = http
   .createServer(function (req, res) {
+    //Post za studenti.csv
     if (req.url === "/student" && req.method === "POST") {
       let body;
       req.on("data", function (data) {
@@ -34,6 +37,7 @@ http
         fs.readFile("studenti.csv", "utf8", (err, text) => {
           let studenti = text.split("\n");
           if (text.length == 0) {
+            //Ako je datoteka prazna, appendaj bez \n
             let noviStudent = `index:${body.index},ime:${body.ime},prezime:${body.prezime}`;
             fs.appendFile("studenti.csv", noviStudent, function (err) {
               if (err) throw err;
@@ -64,12 +68,14 @@ http
           res.end(JSON.stringify({ status: `Kreiran student!` }));
         });
       });
+      //Post za predmeti.csv
     } else if (req.url === "/predmet" && req.method === "POST") {
       let p = new Predmet();
       let body;
       req.on("data", function (data) {
         body = JSON.parse(data);
         fs.readFile("predmeti.csv", "utf8", (err, text) => {
+          //Ako je kod dobar, provjeravaj dalje
           if (p.provjeriKodPredmeta(body.kod)) {
             let predmeti = text.split("\n");
             if (text.length == 0) {
@@ -107,6 +113,7 @@ http
           }
         });
       });
+      //Post za prisustvo.csv
     } else if (req.url === "/prisustvo" && req.method === "POST") {
       req.on("data", function (data) {
         let body = JSON.parse(data);
@@ -124,6 +131,7 @@ http
           return;
         }
 
+        //Citanje iz predmeti.csv (ugnijezdeni fs.readFile-ovi)
         fs.readFile("predmeti.csv", "utf8", (err, text2) => {
           let predmeti = text2.split("\n");
           let flag = false;
@@ -225,7 +233,6 @@ http
       req.method === "GET"
     ) {
       let zahtijev = req.url.slice(req.url.indexOf("?") + 1);
-      // console.log(parametri);
       let objekat = {};
       let parametri = zahtijev.split("&");
       objekat[parametri[0].slice(0, parametri[0].indexOf("="))] =
@@ -296,3 +303,5 @@ http
     }
   })
   .listen(8080);
+
+module.exports = server;
