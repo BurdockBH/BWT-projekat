@@ -116,3 +116,5 @@ class Prisustvo {
     }
   }
 }
+
+module.exports = Prisustvo;
