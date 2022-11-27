@@ -179,7 +179,7 @@ const server = http
               if (err) throw err;
 
               if (text1.length == 0) {
-                let novoPrisustvo = `tipcasa:${body.tipCasa},redniBrojCasa:${body.redniBrojCasa},sedmica:${body.sedmica},kodPredmeta:${body.kodPredmeta},indexStudenta:${body.indexStudenta},statusPrisustva:${body.statusPrisustva}`;
+                let novoPrisustvo = `tipCasa:${body.tipCasa},redniBrojCasa:${body.redniBrojCasa},sedmica:${body.sedmica},kodPredmeta:${body.kodPredmeta},indexStudenta:${body.indexStudenta},statusPrisustva:${body.statusPrisustva}`;
                 fs.appendFile("prisustva.csv", novoPrisustvo, function (err) {
                   if (err) throw err;
                 });
@@ -293,13 +293,13 @@ const server = http
         }
         if (!flag) {
           res.writeHead(400, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ message: "Prisustvo ne postoji!" }));
+          res.end(JSON.stringify({ status: "Prisustvo ne postoji!" }));
           return;
         } else {
           res.writeHead(200, { "Content-Type": "application/json" });
           res.end(
             JSON.stringify({
-              prisustvoZaSedmicu: objekat.sedmica,
+              prisustvoZaSedmicu: parseInt(objekat.sedmica),
               prisutan: pr,
               odsutan: od,
               nijeUneseno: nU,
@@ -310,7 +310,7 @@ const server = http
       });
     } else {
       res.writeHead(404, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ message: "Ruta nije nadjena!" }));
+      res.end(JSON.stringify({ status: "Ruta nije nadjena!" }));
     }
   })
   .listen(8080);
