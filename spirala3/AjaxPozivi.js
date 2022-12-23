@@ -30,18 +30,39 @@ function dajPrisustvo(kodPredmeta, indexStudenta, sedmica, callback) {
             sedmica: sedmica
         }
     }).then((res) => {
-        callback(null, res.data.status);
+        callback(null, res.data);
     }).catch((err) => {
-        callback(err.response.data.status, null);
+        callback(err.data, null);
     })
 }
 
 function ispisi(error, data) {
-    if (error == null) data.innerHTML = data;
-    else if (data == null) error.innerHTML = error;
+    console.log(data);
+
+    if (error == null) {
+        document.getElementById("kod").style.borderColor = 'green';
+        document.getElementById('poruka').innerHTML = data;
+    } else if (data == null) {
+        document.getElementById("kod").style.borderColor = 'red';
+        document.getElementById('poruka').innerHTML = error;
+
+    }
 }
 
-function handleSubmit(event) {
+function funkcija(error, data) {
+
+    let tabela =
+        `<table><tr><td>Prisustvo za sedmicu: </td><td>${data.prisustvoZaSedmicu}</td></tr>` +
+        `<tr><td>Prisutan</td><td>${data.prisutan}</td></tr>` +
+        `<tr><td>Odsutan</td><td>${data.odsutan}</td></tr>` +
+        `<tr><td>nijeUneseno</td><td>${data.nijeUneseno}</td></tr>` +
+        `</table>`;
+
+    document.getElementById('prisustvo-tabela').innerHTML = tabela;
+}
+
+
+function handlePredmet(event) {
     event.preventDefault();
     const data = new FormData(event.target);
     const value = Object.fromEntries(data.entries());
@@ -49,5 +70,13 @@ function handleSubmit(event) {
     posaljiPredmet(value, ispisi);
 }
 
-const form = document.querySelector('form');
-form.addEventListener('submit', handleSubmit);
+function handlePrisustvo(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const value = Object.fromEntries(data.entries());
+
+    dajPrisustvo(value.kodPredmeta, value.indexStudenta, value.sedmica, funkcija);
+}
+
+
+

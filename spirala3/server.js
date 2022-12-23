@@ -315,8 +315,12 @@ app.get("/prisustvo", (req, res) => {
     });
 });
 
-app.get("/unosPredmeta", (req, res) => {
+app.get("/unosPredmeta.html", (req, res) => {
     res.sendFile(__dirname + "/unosPredmeta.html");
+});
+ 
+app.get("/prisustvo.html", (req, res) => {
+    res.sendFile(__dirname + "/prisustvo.html");
 });
 
 app.listen(8080, () => {

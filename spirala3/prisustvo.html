@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+</head>
+<body>
+<form id="prisustvo-forma">
+    <label for="kodPredmeta">Kod predmeta: </label><br/>
+    <input type="text" id="kodPredmeta" name="kodPredmeta"/><br/>
+    <label for="indexStudenta">Index studenta: </label><br/>
+    <input type="text" id="indexStudenta" name="indexStudenta"><br/>
+    <label for="sedmica">Sedmica: </label><br/>
+    <input type="text" id="sedmica" name="sedmica"><br/>
+    <div id="poruka"></div>
+    <br/>
+    <br/>
+    <input type="submit"/>
+</form>
+<div id="prisustvo-tabela"></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="AjaxPozivi.js"></script>
+<script>
+    const prisustvoForma = document.getElementById('prisustvo-forma');
+    prisustvoForma.addEventListener('submit', handlePrisustvo);
+</script>
+</body>
+</html>

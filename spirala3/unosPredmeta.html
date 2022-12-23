@@ -7,18 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-<form>
+<form id="predmet-forma">
     <label for="naziv">Naziv predmeta: </label><br/>
     <input type="text" id="naziv" name="naziv"/><br/>
     <label for="kod">Kod predmeta: </label><br/>
     <input type="text" id="kod" name="kod">
+    <div id="poruka"></div>
     <br/>
     <br/>
     <input type="submit"/>
 </form>
-<div id="error"></div>
-<div id="data"></div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="AjaxPozivi.js"></script>
+<script>
+    const predmetForma = document.getElementById('predmet-forma');
+    predmetForma.addEventListener('submit', handlePredmet);
+</script>
 </body>
 </html>
