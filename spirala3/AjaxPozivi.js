@@ -2,7 +2,7 @@ function posaljiStudent(studentObjekat, callback) {
     axios.post("/student", studentObjekat).then((res) => {
         callback(null, res.data.status);
     }).catch((err) => {
-        callback(err.response.data.status, null);
+        callback(err, null);
     })
 }
 
@@ -51,6 +51,55 @@ function handlePredmet(event) {
         }
 
         document.getElementById("kod").style.borderColor = 'green';
+        document.getElementById('poruka').innerHTML = data;
+        document.getElementById('poruka').style.color = 'green';
+
+    });
+}
+
+function handleStudent(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const value = Object.fromEntries(data.entries());
+
+    posaljiStudent(value, (error, data) => {
+        if (error) {
+            document.getElementById("index").style.borderColor = 'red';
+            document.getElementById('poruka').innerHTML = error.response.data.status;
+            document.getElementById('poruka').style.color = 'red';
+            return;
+        }
+
+        document.getElementById("index").style.borderColor = 'green';
+        document.getElementById('poruka').innerHTML = data;
+        document.getElementById('poruka').style.color = 'green';
+
+    });
+}
+
+function handlePrisustvoPost(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const value = Object.fromEntries(data.entries());
+
+    posaljiPrisustvo(value, (error, data) => {
+        if (error) {
+            if (error.response.data.status == "Status prisustva nije ispravan!")
+                document.getElementById("statusPrisustva").style.borderColor = 'red';
+            if (error.response.data.status == "Kod predmeta ne postoji!")
+                document.getElementById("kodPredmeta").style.borderColor = 'red';
+            if (error.response.data.status == "Student ne postoji!")
+                document.getElementById("indexStudenta").style.borderColor = 'red';
+
+            document.getElementById('poruka').innerHTML = error.response.data.status;
+            document.getElementById('poruka').style.color = 'red';
+            return;
+        }
+
+        document.getElementById("indexStudenta").style.borderColor = 'green';
+        document.getElementById("statusPrisustva").style.borderColor = 'green';
+        document.getElementById("kodPredmeta").style.borderColor = 'green';
+
         document.getElementById('poruka').innerHTML = data;
         document.getElementById('poruka').style.color = 'green';
 

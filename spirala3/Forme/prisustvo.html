@@ -4,12 +4,12 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Document</title>
-    <link rel="stylesheet" href="prisustvo.css">
+    <title>Tabela Prisustva</title>
+    <link rel="stylesheet" href="Forme/prisustvo.css">
 </head>
 <body>
 <div class="login-box">
-    <h2>Login</h2>
+    <h2>Tabela Prisustva</h2>
     <form id="prisustvo-forma">
         <div class="user-box">
             <label for="kodPredmeta">Kod predmeta: </label><br/>
@@ -30,7 +30,7 @@
 </div>
 <div id="prisustvo-tabela"></div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="AjaxPozivi.js"></script>
+<script src="../AjaxPozivi.js"></script>
 <script>
     const prisustvoForma = document.getElementById('prisustvo-forma');
     prisustvoForma.addEventListener('submit', handlePrisustvo);

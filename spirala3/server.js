@@ -316,12 +316,21 @@ app.get("/prisustvo", (req, res) => {
 });
 
 app.get("/unosPredmeta.html", (req, res) => {
-    res.sendFile(__dirname + "/unosPredmeta.html");
+    res.sendFile(__dirname + "/Forme/unosPredmeta.html");
 });
- 
+
 app.get("/prisustvo.html", (req, res) => {
-    res.sendFile(__dirname + "/prisustvo.html");
+    res.sendFile(__dirname + "/Forme/prisustvo.html");
 });
+
+app.get("/unosPrisustva.html", (req, res) => {
+    res.sendFile(__dirname + "/Forme/unosPrisustva.html");
+});
+
+app.get("/unosStudenta.html", (req, res) => {
+    res.sendFile(__dirname + "/Forme/unosStudenta.html");
+});
+
 
 app.listen(8080, () => {
     console.log(`Server is running on port 8080.`);

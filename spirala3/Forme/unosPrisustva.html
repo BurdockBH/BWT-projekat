@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unos Prisustva</title>
+    <link rel="stylesheet" href="Forme/unosi.css">
+</head>
+<body>
+<div class="login-box">
+    <h2>Unos Prisustva</h2>
+    <form id="prisustvo-unos-forma">
+        <div class="user-box">
+            <label for="tipCasa">Tip casa: </label><br/>
+            <input type="text" id="tipCasa" name="tipCasa"/><br/>
+        </div>
+        <div class="user-box">
+            <label for="redniBrojCasa">Redni broj casa: </label><br/>
+            <input type="number" id="redniBrojCasa" name="redniBrojCasa">
+        </div>
+        <div class="user-box">
+            <label for="sedmica">Sedmica: </label><br/>
+            <input type="number" id="sedmica" name="sedmica">
+        </div>
+        <div class="user-box">
+            <label for="kodPredmeta">Kod predmeta: </label><br/>
+            <input type="text" id="kodPredmeta" name="kodPredmeta">
+        </div>
+        <div class="user-box">
+            <label for="indexStudenta">Index studenta: </label><br/>
+            <input type="text" id="indexStudenta" name="indexStudenta">
+        </div>
+        <div class="user-box">
+            <label for="statusPrisustva">Status prisustva: </label><br/>
+            <input type="text" id="statusPrisustva" name="statusPrisustva">
+        </div>
+        <div id="poruka"></div>
+        <br>
+        <input type="submit">
+    </form>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../AjaxPozivi.js"></script>
+<script>
+    const prisustvoUnosForma = document.getElementById('prisustvo-unos-forma');
+    prisustvoUnosForma.addEventListener('submit', handlePrisustvoPost);
+</script>
+</body>
+</html>

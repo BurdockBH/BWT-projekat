@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unos Studenata</title>
+    <link rel="stylesheet" href="Forme/unosi.css">
+</head>
+<body>
+<div class="login-box">
+    <h2>Unos Studenta</h2>
+    <form id="student-forma">
+        <div class="user-box">
+            <label for="ime">Ime: </label><br/>
+            <input type="text" id="ime" name="ime"/><br/>
+        </div>
+        <div class="user-box">
+            <label for="prezime">Prezime: </label><br/>
+            <input type="text" id="prezime" name="prezime">
+        </div>
+        <div class="user-box">
+            <label for="index">Index: </label><br/>
+            <input type="text" id="index" name="index">
+        </div>
+        <div id="poruka"></div>
+        <br>
+        <input type="submit">
+    </form>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../AjaxPozivi.js"></script>
+<script>
+    const studentForma = document.getElementById('student-forma');
+    studentForma.addEventListener('submit', handleStudent);
+</script>
+</body>
+</html>
