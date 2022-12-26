@@ -1,0 +1,87 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #c31432, #240b36);
+}
+
+.login-box {
+    margin: auto;
+    margin-top: 10%;
+    width: 400px;
+    padding: 40px;
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 40px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+
+#poruka {
+    color: white;
+}
+
+#prisustvo-tabela {
+    margin-top: 5%;
+}
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+table {
+    background-color: white;
+    font-size: larger;
+    width: 500px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}

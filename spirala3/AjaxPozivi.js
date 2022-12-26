@@ -46,11 +46,14 @@ function handlePredmet(event) {
         if (error) {
             document.getElementById("kod").style.borderColor = 'red';
             document.getElementById('poruka').innerHTML = error.response.data.status;
+            document.getElementById('poruka').style.color = 'red';
             return;
         }
 
         document.getElementById("kod").style.borderColor = 'green';
         document.getElementById('poruka').innerHTML = data;
+        document.getElementById('poruka').style.color = 'green';
+
     });
 }
 
@@ -66,22 +69,21 @@ function handlePrisustvo(event) {
             document.getElementById("indexStudenta").style.borderColor = 'red';
             document.getElementById("sedmica").style.borderColor = 'red';
             document.getElementById('poruka').innerHTML = error.response.data.status;
+            document.getElementById('poruka').style.color = 'red';
             return;
         }
 
-        document.getElementById("kodPredmeta").style.borderColor = 'black';
-        document.getElementById("indexStudenta").style.borderColor = 'black';
-        document.getElementById("sedmica").style.borderColor = 'black';
+        document.getElementById("kodPredmeta").style.borderColor = 'white';
+        document.getElementById("indexStudenta").style.borderColor = 'white';
+        document.getElementById("sedmica").style.borderColor = 'white';
         document.getElementById('poruka').innerHTML = " ";
 
-        let tabela =
-            `<table><tr><td>Prisustvo za sedmicu: </td><td>${data.prisustvoZaSedmicu}</td></tr>` +
+        document.getElementById('prisustvo-tabela').innerHTML = `<table style="margin: auto"><tr><td>Prisustvo za sedmicu: </td><td>${data.prisustvoZaSedmicu}</td></tr>` +
             `<tr><td>Prisutan</td><td>${data.prisutan}</td></tr>` +
             `<tr><td>Odsutan</td><td>${data.odsutan}</td></tr>` +
             `<tr><td>nijeUneseno</td><td>${data.nijeUneseno}</td></tr>` +
             `</table>`;
 
-        document.getElementById('prisustvo-tabela').innerHTML = tabela;
     });
 }
 
