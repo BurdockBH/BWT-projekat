@@ -29,11 +29,11 @@ body {
     text-align: center;
 }
 
-.login-box .user-box {
+.login-box .inputi {
     position: relative;
 }
 
-.login-box .user-box input {
+.login-box .inputi input {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -45,7 +45,7 @@ body {
     background: transparent;
 }
 
-.login-box .user-box label {
+.login-box .inputi label {
     position: absolute;
     top: 0;
     left: 0;

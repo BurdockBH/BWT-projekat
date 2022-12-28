@@ -42,19 +42,22 @@ function handlePredmet(event) {
     const data = new FormData(event.target);
     const value = Object.fromEntries(data.entries());
 
-    posaljiPredmet(value, (error, data) => {
-        if (error) {
-            document.getElementById("kod").style.borderColor = 'red';
-            document.getElementById('poruka').innerHTML = error.response.data.status;
-            document.getElementById('poruka').style.color = 'red';
-            return;
-        }
+    if (value.kod != "") {
 
-        document.getElementById("kod").style.borderColor = 'green';
-        document.getElementById('poruka').innerHTML = data;
-        document.getElementById('poruka').style.color = 'green';
+        posaljiPredmet(value, (error, data) => {
+            if (error) {
+                document.getElementById("kod").style.borderColor = 'red';
+                document.getElementById('poruka').innerHTML = error.response.data.status;
+                document.getElementById('poruka').style.color = 'red';
+                return;
+            }
 
-    });
+            document.getElementById("kod").style.borderColor = 'green';
+            document.getElementById('poruka').innerHTML = data;
+            document.getElementById('poruka').style.color = 'green';
+
+        });
+    }
 }
 
 function handleStudent(event) {
@@ -62,19 +65,21 @@ function handleStudent(event) {
     const data = new FormData(event.target);
     const value = Object.fromEntries(data.entries());
 
-    posaljiStudent(value, (error, data) => {
-        if (error) {
-            document.getElementById("index").style.borderColor = 'red';
-            document.getElementById('poruka').innerHTML = error.response.data.status;
-            document.getElementById('poruka').style.color = 'red';
-            return;
-        }
+    if (value.index != "") {
+        posaljiStudent(value, (error, data) => {
+            if (error) {
+                document.getElementById("index").style.borderColor = 'red';
+                document.getElementById('poruka').innerHTML = error.response.data.status;
+                document.getElementById('poruka').style.color = 'red';
+                return;
+            }
 
-        document.getElementById("index").style.borderColor = 'green';
-        document.getElementById('poruka').innerHTML = data;
-        document.getElementById('poruka').style.color = 'green';
+            document.getElementById("index").style.borderColor = 'green';
+            document.getElementById('poruka').innerHTML = data;
+            document.getElementById('poruka').style.color = 'green';
 
-    });
+        });
+    }
 }
 
 function handlePrisustvoPost(event) {
@@ -82,28 +87,31 @@ function handlePrisustvoPost(event) {
     const data = new FormData(event.target);
     const value = Object.fromEntries(data.entries());
 
-    posaljiPrisustvo(value, (error, data) => {
-        if (error) {
-            if (error.response.data.status == "Status prisustva nije ispravan!")
-                document.getElementById("statusPrisustva").style.borderColor = 'red';
-            if (error.response.data.status == "Kod predmeta ne postoji!")
-                document.getElementById("kodPredmeta").style.borderColor = 'red';
-            if (error.response.data.status == "Student ne postoji!")
-                document.getElementById("indexStudenta").style.borderColor = 'red';
+    if (Object.values(value).every(x => x != '')) {
+        posaljiPrisustvo(value, (error, data) => {
+            if (error) {
+                if (error.response.data.status == "Status prisustva nije ispravan!")
+                    document.getElementById("statusPrisustva").style.borderColor = 'red';
+                if (error.response.data.status == "Kod predmeta ne postoji!")
+                    document.getElementById("kodPredmeta").style.borderColor = 'red';
+                if (error.response.data.status == "Student ne postoji!")
+                    document.getElementById("indexStudenta").style.borderColor = 'red';
 
-            document.getElementById('poruka').innerHTML = error.response.data.status;
-            document.getElementById('poruka').style.color = 'red';
-            return;
-        }
+                document.getElementById('poruka').innerHTML = error.response.data.status;
+                document.getElementById('poruka').style.color = 'red';
+                return;
+            }
 
-        document.getElementById("indexStudenta").style.borderColor = 'green';
-        document.getElementById("statusPrisustva").style.borderColor = 'green';
-        document.getElementById("kodPredmeta").style.borderColor = 'green';
+            document.getElementById("indexStudenta").style.borderColor = 'green';
+            document.getElementById("statusPrisustva").style.borderColor = 'green';
+            document.getElementById("kodPredmeta").style.borderColor = 'green';
 
-        document.getElementById('poruka').innerHTML = data;
-        document.getElementById('poruka').style.color = 'green';
+            document.getElementById('poruka').innerHTML = data;
+            document.getElementById('poruka').style.color = 'green';
 
-    });
+        });
+    }
+
 }
 
 function handlePrisustvo(event) {
