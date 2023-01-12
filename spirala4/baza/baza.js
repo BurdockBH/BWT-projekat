@@ -97,24 +97,7 @@ student_predmet.belongsTo(Predmet, {foreignKey: 'predmetId'});
 Cas.belongsTo(Predmet, {foreignKey: 'predmetId'})
 Prisustvo.belongsTo(Student, {foreignKey: 'studentId'});
 Prisustvo.belongsTo(Cas, {foreignKey: 'casId'})
- 
 
-function connectTables() {
-    sequelize.sync()
-        .then(() => {
-            console.log('Tables are successfully connected.');
-            console.log(student_predmet.findOne({where: {studentId: 1}}));
-        })
-        .catch(err => {
-            console.error('An error occurred while connecting the tables: ', err);
-        });
-}
 
-connectTables();
+module.exports = {sequelize, Student, Prisustvo, Predmet, student_predmet};
 
-module.exports = sequelize;
-module.exports = Student;
-module.exports = Prisustvo;
-module.exports = Cas;
-module.exports = Predmet;
-module.exports = student_predmet;

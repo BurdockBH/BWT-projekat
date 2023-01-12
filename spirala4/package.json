@@ -13,5 +13,6 @@
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
     "mocha": "^10.1.0"
-  }
+  },
+  "type": "commonjs"
 }

@@ -1,6 +1,5 @@
-const http = require("http");
 const fs = require("fs");
-const Predmet = require("./scripts/Predmet");
+const Predmeti = require("./scripts/Predmet");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -8,6 +7,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 let path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static('./'));
+
+const sequelize = require("./baza/baza.js");
 
 
 //Funckije za dodavanje podataka u .csv
@@ -78,7 +79,7 @@ app.post("/student", (req, res) => {
     //Post za predmeti.csv
 });
 app.post("/predmet", (req, res) => {
-    let p = new Predmet();
+    let p = new Predmeti();
     let body;
     req.on("data", function (data) {
         body = JSON.parse(data);
