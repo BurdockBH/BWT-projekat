@@ -13,17 +13,18 @@ const sequelize = require("./baza/baza.js");
 
 //Funckije za dodavanje podataka u .csv
 function DodajStudenta(data) {
-    let noviStudent = `\nindex:${data.index},ime:${data.ime},prezime:${data.prezime}`;
-    fs.appendFile("studenti.csv", noviStudent, function (err) {
-        if (err) throw err;
-    });
+    sequelize.Student.create({
+        ime: `${data.ime}`,
+        prezime: `${data.prezime}`,
+        index: `${data.index}`
+    })
 }
 
 function DodajPredmet(data) {
-    let noviPredmet = `\nkod:${data.kod},naziv:${data.naziv}`;
-    fs.appendFile("predmeti.csv", noviPredmet, function (err) {
-        if (err) throw err;
-    });
+    sequelize.Predmet.create({
+        naziv: `${data.naziv}`,
+        kod: `${data.kod}`
+    })
 }
 
 function DodajPrisustvo(data) {
