@@ -19,30 +19,19 @@ const Student = sequelize.define('Student', {
     prezime: Sequelize.STRING,
     index: Sequelize.STRING
 })
-const Prisustvo = sequelize.define('Prisustvo', {
+
+
+const Predmet = sequelize.define('Predmet', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    studentId: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'Student',
-            key: 'id',
-        },
-    },
-    casId: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'Cas',
-            key: 'id',
-        },
-    },
-    status: Sequelize.STRING
+    naziv: Sequelize.STRING,
+    kod: Sequelize.STRING,
 })
 
-const Cas = sequelize.define('Prisustvo', {
+const Cas = sequelize.define('Cas', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -54,23 +43,14 @@ const Cas = sequelize.define('Prisustvo', {
     predmetId: {
         type: Sequelize.INTEGER,
         references: {
-            model: 'Predmet',
+            model: 'Predmets',
             key: 'id',
         },
     },
 })
 
-const Predmet = sequelize.define('Prisustvo', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    naziv: Sequelize.STRING,
-    kod: Sequelize.STRING,
-})
 
-const student_predmet = sequelize.define('Prisustvo', {
+const student_predmet = sequelize.define('student_predmet', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -79,25 +59,51 @@ const student_predmet = sequelize.define('Prisustvo', {
     studentId: {
         type: Sequelize.INTEGER,
         references: {
-            model: 'Student',
+            model: 'Students',
             key: 'id',
         },
     },
     predmetId: {
         type: Sequelize.INTEGER,
         references: {
-            model: 'Predmet',
+            model: 'Predmets',
             key: 'id',
         },
     },
 })
 
+const Prisustvo = sequelize.define('Prisustvo', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    studentId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: 'Students',
+            key: 'id',
+        },
+    },
+    casId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: 'Cass',
+            key: 'id',
+        },
+    },
+    status: Sequelize.STRING
+})
+ 
 student_predmet.belongsTo(Student, {foreignKey: 'studentId'});
 student_predmet.belongsTo(Predmet, {foreignKey: 'predmetId'});
 Cas.belongsTo(Predmet, {foreignKey: 'predmetId'})
 Prisustvo.belongsTo(Student, {foreignKey: 'studentId'});
 Prisustvo.belongsTo(Cas, {foreignKey: 'casId'})
 
+sequelize.sync()
+    .then(() => console.log('Tables created successfully'))
+    .catch(err => console.error('Error creating tables:', err));
 
 module.exports = {sequelize, Student, Prisustvo, Predmet, student_predmet};
 
