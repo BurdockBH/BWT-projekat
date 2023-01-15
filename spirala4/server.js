@@ -63,7 +63,6 @@ app.post("/predmet", (req, res) => {
 app.post("/prisustvo", (req, res) => {
     req.on("data", function (data) {
         let body = JSON.parse(data);
-
         if (
             body.statusPrisustva != "prisutan" &&
             body.statusPrisustva != "odsutan" &&
@@ -75,6 +74,7 @@ app.post("/prisustvo", (req, res) => {
                     status: `Status prisustva nije ispravan!`,
                 })
             );
+            return;
         }
         sequelize.Predmet.findOne({where: {kod: body.kodPredmeta}}).then(predmet => {
             if (!predmet) {
