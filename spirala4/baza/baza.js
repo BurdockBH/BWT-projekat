@@ -1,10 +1,10 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
-    "deasgnpp",
-    "deasgnpp",
-    "4y0AsaKzW_BN61TmFhL84YOOx4yS76ZG",
+    "lxlswnnc",
+    "lxlswnnc",
+    "7Xfg4Y_NcQNuI-rqBTyHfpKwWBJPz-Ud",
     {
-        host: "snuffleupagus.db.elephantsql.com",
+        host: "hattie.db.elephantsql.com",
         dialect: "postgres",
     }
 );
@@ -38,9 +38,9 @@ const Cas = sequelize.define('Cas', {
         primaryKey: true,
         autoIncrement: true,
     },
-    redniBroj: Sequelize.STRING,
+    redniBroj: Sequelize.INTEGER,
     tip: Sequelize.STRING,
-    sedmica: Sequelize.STRING,
+    sedmica: Sequelize.INTEGER,
     predmetId: {
         type: Sequelize.INTEGER,
         references: {
@@ -77,7 +77,7 @@ const student_predmet = sequelize.define('student_predmet', {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
     },
-})
+}, {tableName: "student_predmet"})
 
 const Prisustvo = sequelize.define('Prisustvo', {
     id: {
@@ -116,16 +116,5 @@ Prisustvo.belongsTo(Cas, {foreignKey: 'casId'})
 //     .then(() => console.log('Tables created successfully'))
 //     .catch(err => console.error('Error creating tables:', err));
 
-// Student.create({ime: "ermin", prezime: "hadzic", index: "158-ST"}).then(() => {
-//     console.log("User created!");
-// }).catch((err) => {
-//     console.log("error", err)
-// })
-
-Student.findAll().then(res => {
-    for (let x of res)
-        console.log(x.dataValues);
-})
-
-module.exports = {sequelize, Student, Prisustvo, Predmet, student_predmet};
+module.exports = {sequelize, Student, Prisustvo, Predmet, student_predmet, Cas};
 
