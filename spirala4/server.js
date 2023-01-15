@@ -10,10 +10,6 @@ app.use(express.static('./'));
 
 const sequelize = require("./baza/baza.js");
 
-
-//Kreiranje servera
-
-//Post za studenti.csv
 app.post("/student", (req, res) => {
     let body;
     req.on("data", function (data) {
@@ -207,7 +203,7 @@ app.get("/prisustvo.html", (req, res) => {
 app.get("/unosPrisustva.html", (req, res) => {
     res.sendFile(__dirname + "/Forme/unosPrisustva.html");
 });
- 
+
 app.get("/unosStudenta.html", (req, res) => {
     res.sendFile(__dirname + "/Forme/unosStudenta.html");
 });
