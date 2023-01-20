@@ -1,6 +1,6 @@
 function posaljiStudent(studentObjekat, callback) {
     axios.post("/student", studentObjekat).then((res) => {
-        callback(null, res.data.status);
+        callback(null, res.data);
     }).catch((err) => {
         callback(err, null);
     })
@@ -8,7 +8,7 @@ function posaljiStudent(studentObjekat, callback) {
 
 function posaljiPredmet(predmetObjekat, callback) {
     axios.post("/predmet", predmetObjekat).then((res) => {
-        callback(null, res.data.status);
+        callback(null, res.data);
     }).catch((err) => {
         callback(err, null);
     })
@@ -16,7 +16,7 @@ function posaljiPredmet(predmetObjekat, callback) {
 
 function posaljiPrisustvo(predmetPrisustvo, callback) {
     axios.post("/prisustvo", predmetPrisustvo).then((res) => {
-        callback(null, res.data.status);
+        callback(null, res.data);
     }).catch((err) => {
         callback(err, null);
     })
@@ -53,7 +53,7 @@ function handlePredmet(event) {
             }
 
             document.getElementById("kod").style.borderColor = 'green';
-            document.getElementById('poruka').innerHTML = data;
+            document.getElementById('poruka').innerHTML = data.status;
             document.getElementById('poruka').style.color = 'green';
 
         });
@@ -75,7 +75,7 @@ function handleStudent(event) {
             }
 
             document.getElementById("index").style.borderColor = 'green';
-            document.getElementById('poruka').innerHTML = data;
+            document.getElementById('poruka').innerHTML = data.status;
             document.getElementById('poruka').style.color = 'green';
 
         });
@@ -106,7 +106,7 @@ function handlePrisustvoPost(event) {
             document.getElementById("statusPrisustva").style.borderColor = 'green';
             document.getElementById("kodPredmeta").style.borderColor = 'green';
 
-            document.getElementById('poruka').innerHTML = data;
+            document.getElementById('poruka').innerHTML = data.status;
             document.getElementById('poruka').style.color = 'green';
 
         });
